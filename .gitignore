@@ -1,0 +1,6 @@
+#Mac-User :>
+.DS_Store
+
+/.idea
+/.gradle
+/build
