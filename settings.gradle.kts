@@ -1,1 +1,1 @@
-rootProject.name = "detekt-custom-rule-template"
+rootProject.name = "detekt-custom-rule"
