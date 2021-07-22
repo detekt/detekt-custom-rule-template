@@ -1,0 +1,26 @@
+name: Pre Merge Checks
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  gradle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Cache Gradle Files
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches/
+            ~/.gradle/wrapper/
+          key: cache-gradle
+      - name: Run Gradle tasks
+        run: ./gradlew test publishToMavenLocal
+      - name: Stop Gradle
+        run: ./gradlew --stop
