@@ -13,7 +13,8 @@ mv src/main/kotlin/org/example/detekt/* src/main/kotlin/$directory
 mv src/test/kotlin/org/example/detekt/* src/test/kotlin/$directory
 
 rm $0
+rm .github/workflows/cleanup.yaml
 
 git reset
-git add src/main src/test build.gradle.kts $0
+git add src/main src/test build.gradle.kts $0 .github/workflows/cleanup.yaml
 git commit -m "Change package name from org.example.detekt to $package_name"

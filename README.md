@@ -5,12 +5,10 @@ This repository is a template. You can use it to generate your own repository to
 ## How to use it
 
 1. Create a new repository using this one as a template. [Click here][create_template]
-2. Change package name. You can do it by hand or running this script: `./change_package_name.sh your.package.here`
-   1. Caution, this script creates a commit with the package name change
-3. Edit MyRule to fit your use case
-4. Share your rule! You can upload your rule to [Maven Central][maven_central] if you want. If you don't want to do
+2. Edit MyRule to fit your use case
+3. Share your rule! You can upload your rule to [Maven Central][maven_central] if you want. If you don't want to do
    all the steps that Maven Central requires you can just share your rule using [jitpack][jitpack].
-5. Extra: you can remove all this README and explain what your rule does and how to configure it.
+4. Extra: you can remove all this README and explain what your rule does and how to configure it.
 
 ## Documentation
 
