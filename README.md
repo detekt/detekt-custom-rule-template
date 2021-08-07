@@ -26,7 +26,7 @@ MyRuleSet:
 ```
 
 
-  [create_template]: https://github.com/BraisGabin/detekt-custom-rule-template/generate
+  [create_template]: https://github.com/detekt/detekt-custom-rule-template/generate
   [maven_central]: https://search.maven.org/
   [custom_rule_documentation]: https://detekt.github.io/detekt/extensions.html
   [jitpack]: https://jitpack.io/
