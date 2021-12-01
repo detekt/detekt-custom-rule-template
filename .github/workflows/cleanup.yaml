@@ -27,7 +27,7 @@ jobs:
           git config --local user.name "GitHub Action"
           owner=$(echo $GITHUB_REPOSITORY | cut -d/ -f1 | tr '[:upper:]' '[:lower:]')
           name=$(echo $GITHUB_REPOSITORY | cut -d/ -f2 | tr '[:upper:]' '[:lower:]' | tr -d "-" | tr -d ".")
-          ./change_package_name.sh com.github.${owner,,}.${name,,}
+          ./change_package_name.sh com.github.${owner,,}.${name,,} "$(echo $GITHUB_REPOSITORY | cut -d/ -f2)"
       # Push changes
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
