@@ -6,8 +6,8 @@ import io.github.detekt.test.utils.createEnvironment
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.test.compileAndLintWithContext
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
-import org.junit.After
-import org.junit.Before
+import org.junit.AfterClass
+import org.junit.BeforeClass
 import org.junit.Test
 
 internal class CustomRuleSpec {
@@ -34,17 +34,22 @@ internal class CustomRuleSpec {
         assertThat(findings).isEmpty()
     }
 
-    private lateinit var envWrapper: KotlinCoreEnvironmentWrapper
     private val env: KotlinCoreEnvironment
         get() = envWrapper.env
 
-    @Before
-    fun setUp() {
-        envWrapper = createEnvironment()
-    }
+    companion object {
+        private lateinit var envWrapper: KotlinCoreEnvironmentWrapper
 
-    @After
-    fun tearDown() {
-        envWrapper.dispose()
+        @BeforeClass
+        @JvmStatic
+        fun setUp() {
+            envWrapper = createEnvironment()
+        }
+
+        @AfterClass
+        @JvmStatic
+        fun tearDown() {
+            envWrapper.dispose()
+        }
     }
 }
