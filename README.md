@@ -6,8 +6,8 @@ This repository is a template. You can use it to generate your own repository to
 
 1. Create a new repository using this one as a template. [Click here][create_template]
 2. Edit MyRule to fit your use case
-3. Share your rule! You can upload your rule to [Maven Central][maven_central] if you want. If you don't want to do
-   all the steps that Maven Central requires you can just share your rule using [jitpack][jitpack].
+3. Share your rule! You can upload your rule to [Maven Central][maven_central] if you want. If you don't want to do all
+   the steps that Maven Central requires you can just share your rule using [jitpack][jitpack].
 4. Extra: you can remove all this README and explain what your rule does and how to configure it.
 
 ## Documentation
@@ -16,8 +16,8 @@ You can find the documentation about how to write custom [rules here][custom_rul
 
 ## Note
 
-Remember that, by default, all the rules aren't enable. To activate the rule you need to write something like this in your
-yaml configuration:
+Remember that, by default, all the rules aren't enable. To activate the rule you need to write something like this in
+your yaml configuration:
 
 ```yaml
 MyRuleSet:
@@ -25,8 +25,10 @@ MyRuleSet:
     active: true
 ```
 
+[create_template]: https://github.com/detekt/detekt-custom-rule-template/generate
 
-  [create_template]: https://github.com/detekt/detekt-custom-rule-template/generate
-  [maven_central]: https://search.maven.org/
-  [custom_rule_documentation]: https://detekt.github.io/detekt/extensions.html
-  [jitpack]: https://jitpack.io/
+[maven_central]: https://search.maven.org/
+
+[custom_rule_documentation]: https://detekt.github.io/detekt/extensions.html
+
+[jitpack]: https://jitpack.io/
