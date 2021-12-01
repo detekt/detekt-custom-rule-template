@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.18.1")
+    compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.19.0")
 
     testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.18.1")
     testImplementation("com.google.truth:truth:1.1.3")
