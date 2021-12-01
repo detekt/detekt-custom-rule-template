@@ -16,7 +16,7 @@ dependencies {
     compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.18.1")
 
     testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.18.1")
-    testImplementation("org.assertj:assertj-core:3.21.0")
+    testImplementation("com.google.truth:truth:1.1.3")
     testImplementation("junit:junit:4.13.2")
 }
 
