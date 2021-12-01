@@ -24,6 +24,15 @@ tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "11"
 }
 
+tasks.withType<Test>().configureEach {
+    val compileSnippetText: Boolean = if (project.hasProperty("compile-test-snippets")) {
+        (project.property("compile-test-snippets") as String).toBoolean()
+    } else {
+        false
+    }
+    systemProperty("compile-snippet-tests", compileSnippetText)
+}
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
