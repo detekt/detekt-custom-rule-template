@@ -16,7 +16,7 @@ You can find the documentation about how to write custom [rules here][custom_rul
 
 ## Note
 
-Remember that, by default, all the rules aren't enable. To activate the rule you need to write something like this in
+Remember that, by default, all rules are disabled. To activate a rule you need to write something like this in
 your yaml configuration:
 
 ```yaml
