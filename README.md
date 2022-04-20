@@ -16,14 +16,8 @@ You can find the documentation about how to write custom [rules here][custom_rul
 
 ## Note
 
-Remember that, by default, all rules are disabled. To activate a rule you need to write something like this in
-your yaml configuration:
-
-```yaml
-MyRuleSet:
-  MyRule:
-    active: true
-```
+Remember that, by default, all rules are disabled. To configure your rules edit the file in
+`src/main/resources/config/config.yml`.
 
 [create_template]: https://github.com/detekt/detekt-custom-rule-template/generate
 
