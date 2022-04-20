@@ -1,16 +1,14 @@
 package org.example.detekt
 
 import com.google.common.truth.Truth.assertThat
-import io.github.detekt.test.utils.KotlinCoreEnvironmentWrapper
-import io.github.detekt.test.utils.createEnvironment
 import io.gitlab.arturbosch.detekt.api.Config
+import io.gitlab.arturbosch.detekt.rules.KotlinCoreEnvironmentTest
 import io.gitlab.arturbosch.detekt.test.compileAndLintWithContext
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
-import org.junit.AfterClass
-import org.junit.BeforeClass
 import org.junit.Test
 
-internal class MyRuleSpec {
+@KotlinCoreEnvironmentTest
+internal class MyRuleSpec(private val env: KotlinCoreEnvironment) {
 
     @Test
     fun `reports inner classes`() {
@@ -32,24 +30,5 @@ internal class MyRuleSpec {
         """
         val findings = MyRule(Config.empty).compileAndLintWithContext(env, code)
         assertThat(findings).isEmpty()
-    }
-
-    private val env: KotlinCoreEnvironment
-        get() = envWrapper.env
-
-    companion object {
-        private lateinit var envWrapper: KotlinCoreEnvironmentWrapper
-
-        @BeforeClass
-        @JvmStatic
-        fun setUp() {
-            envWrapper = createEnvironment()
-        }
-
-        @AfterClass
-        @JvmStatic
-        fun tearDown() {
-            envWrapper.dispose()
-        }
     }
 }
