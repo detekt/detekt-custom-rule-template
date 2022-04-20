@@ -25,12 +25,7 @@ tasks.withType<KotlinCompile>() {
 }
 
 tasks.withType<Test>().configureEach {
-    val compileSnippetText: Boolean = if (project.hasProperty("compile-test-snippets")) {
-        (project.property("compile-test-snippets") as String).toBoolean()
-    } else {
-        false
-    }
-    systemProperty("compile-snippet-tests", compileSnippetText)
+    systemProperty("compile-snippet-tests", project.hasProperty("compile-test-snippets"))
 }
 
 publishing {
