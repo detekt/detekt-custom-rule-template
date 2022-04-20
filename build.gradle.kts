@@ -17,7 +17,7 @@ dependencies {
 
     testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.20.0")
     testImplementation("com.google.truth:truth:1.1.3")
-    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
 }
 
 tasks.withType<KotlinCompile>() {
@@ -25,6 +25,8 @@ tasks.withType<KotlinCompile>() {
 }
 
 tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+    systemProperty("junit.jupiter.testinstance.lifecycle.default", "per_class")
     systemProperty("compile-snippet-tests", project.hasProperty("compile-test-snippets"))
 }
 
