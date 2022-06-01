@@ -5,7 +5,7 @@ import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.rules.KotlinCoreEnvironmentTest
 import io.gitlab.arturbosch.detekt.test.compileAndLintWithContext
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 @KotlinCoreEnvironmentTest
 internal class MyRuleSpec(private val env: KotlinCoreEnvironment) {
