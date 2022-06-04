@@ -1,9 +1,9 @@
 package org.example.detekt
 
-import com.google.common.truth.Truth.assertThat
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.rules.KotlinCoreEnvironmentTest
 import io.gitlab.arturbosch.detekt.test.compileAndLintWithContext
+import io.kotest.matchers.collections.shouldHaveSize
 import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
 import org.junit.jupiter.api.Test
 
@@ -18,7 +18,7 @@ internal class MyRuleSpec(private val env: KotlinCoreEnvironment) {
         }
         """
         val findings = MyRule(Config.empty).compileAndLintWithContext(env, code)
-        assertThat(findings).hasSize(1)
+        findings shouldHaveSize 1
     }
 
     @Test
@@ -29,6 +29,6 @@ internal class MyRuleSpec(private val env: KotlinCoreEnvironment) {
         }
         """
         val findings = MyRule(Config.empty).compileAndLintWithContext(env, code)
-        assertThat(findings).isEmpty()
+        findings shouldHaveSize 0
     }
 }
