@@ -16,7 +16,7 @@ dependencies {
     compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.21.0")
 
     testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.21.0")
-    testImplementation("io.kotest:kotest-assertions-core:5.4.0")
+    testImplementation("io.kotest:kotest-assertions-core:5.4.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
 }
 
