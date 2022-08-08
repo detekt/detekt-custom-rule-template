@@ -8,10 +8,6 @@ plugins {
 group = "org.example.detekt"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.22.0")
 
