@@ -17,7 +17,7 @@ dependencies {
 
     testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.21.0")
     testImplementation("io.kotest:kotest-assertions-core:5.4.2")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
 }
 
 tasks.withType<KotlinCompile>() {
