@@ -1,4 +1,4 @@
-# Detekt custom rule template
+# detekt custom rule template
 
 This repository is a template. You can use it to generate your own repository to write and share your custom rules.
 
@@ -12,12 +12,13 @@ This repository is a template. You can use it to generate your own repository to
 
 ## Documentation
 
-You can find the documentation about how to write custom [rules here][custom_rule_documentation].
+You can find the documentation about how to write [custom rules here][custom_rule_documentation].
 
 ## Note
 
-Remember that, by default, all rules are disabled. To configure your rules edit the file in
+- Remember that, by default, all rules are disabled. To configure your rules edit the file in
 `src/main/resources/config/config.yml`.
+- Once you have your rules ready you can publish them on the [detekt's marketplace][detekt_marketplace] to improve the discoverability. To do so create a PR editing [this file][detekt_marketplace_edit].
 
 [create_template]: https://github.com/detekt/detekt-custom-rule-template/generate
 
@@ -26,3 +27,6 @@ Remember that, by default, all rules are disabled. To configure your rules edit 
 [custom_rule_documentation]: https://detekt.github.io/detekt/extensions.html
 
 [jitpack]: https://jitpack.io/
+
+[detekt_marketplace]: https://detekt.dev/marketplace
+[detekt_marketplace_edit]: https://github.com/detekt/detekt/blob/main/website/src/data/marketplace.js
