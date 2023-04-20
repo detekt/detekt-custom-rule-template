@@ -1,10 +1,14 @@
 plugins {
     kotlin("jvm") version "1.8.20"
-    `maven-publish`
 }
 
-group = "org.example.detekt"
-version = "1.0-SNAPSHOT"
+buildscript {
+    dependencies {
+        classpath("com.vanniktech:gradle-maven-publish-plugin:0.21.0")
+    }
+}
+
+apply(plugin="com.vanniktech.maven.publish")
 
 dependencies {
     compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.22.0")
@@ -22,12 +26,4 @@ tasks.withType<Test>().configureEach {
     useJUnitPlatform()
     systemProperty("junit.jupiter.testinstance.lifecycle.default", "per_class")
     systemProperty("compile-snippet-tests", project.hasProperty("compile-test-snippets"))
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-        }
-    }
 }

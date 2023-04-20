@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 
-package_name=$1
+github_repository=$1
+owner=$(echo $github_repository | cut -d/ -f1 | tr '[:upper:]' '[:lower:]')
+name=$(echo $github_repository | cut -d/ -f2 | tr '[:upper:]' '[:lower:]' | tr -d "-" | tr -d ".")
+package_name="com.github.${owner}.${name}"
 directory=$(echo $package_name | tr "." "/")
-repo_name=$2
+repo_name=$(echo $github_repository | cut -d/ -f2)
 
 mkdir -p src/main/kotlin/$directory
 mkdir -p src/test/kotlin/$directory
 
-find src/main src/test -type f -exec sed -i s/org.example.detekt/$package_name/g {} +
-sed -i s/org.example.detekt/$package_name/g build.gradle.kts
-sed -i s/detekt-custom-rule/$repo_name/g settings.gradle.kts
+find src/main src/test -type f -exec sed -i "s/org.example.detekt/$package_name/g" {} +
+
+sed -i "s/org.example.detekt/com.github.${owner}/g" build.gradle.kts gradle.properties
+sed -i "s/detekt-custom-rule/$repo_name/g" settings.gradle.kts gradle.properties
+sed -i "s|github.com/example/custom-rule|github.com/$github_repository|g" gradle.properties
 
 mv src/main/kotlin/org/example/detekt/* src/main/kotlin/$directory
 mv src/test/kotlin/org/example/detekt/* src/test/kotlin/$directory
