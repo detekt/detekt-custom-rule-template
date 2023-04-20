@@ -1,7 +1,7 @@
 rootProject.name = "detekt-custom-rule"
 
 dependencyResolutionManagement {
-  repositories {
-    mavenCentral()
-  }
+    repositories {
+        mavenCentral()
+    }
 }
