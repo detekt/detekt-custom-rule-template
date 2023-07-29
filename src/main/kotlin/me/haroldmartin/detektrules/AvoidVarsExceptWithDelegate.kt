@@ -7,6 +7,7 @@ import io.gitlab.arturbosch.detekt.api.Entity
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.Severity
+import io.gitlab.arturbosch.detekt.api.config
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.psiUtil.findDescendantOfType
@@ -19,9 +20,7 @@ class AvoidVarsExceptWithDelegate(config: Config) : Rule(config) {
         debt = Debt.TWENTY_MINS,
     )
 
-    private val allowedDelegates = config
-        .valueOrDefault("delegates", listOf("remember\\w*"))
-        .map { it.toRegex() }
+    private val allowedDelegates: List<Regex> by config(listOf("remember\\w*")) { it.map(String::toRegex) }
 
     override fun visitProperty(property: KtProperty) {
         super.visitProperty(property)

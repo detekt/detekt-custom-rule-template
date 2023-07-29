@@ -3,4 +3,5 @@ HbmartinRuleSet:
     active: true
   AvoidVarsExceptWithDelegate:
     active: true
-    delegates: ["remember\w*"]
+    allowedDelegates:
+      - "remember\w*"
