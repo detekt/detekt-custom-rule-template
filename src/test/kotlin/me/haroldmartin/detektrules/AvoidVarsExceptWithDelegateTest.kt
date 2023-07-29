@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 @KotlinCoreEnvironmentTest
 internal class AvoidVarsExceptWithDelegateTest(private val env: KotlinCoreEnvironment) {
     @Test
-    fun `reports first() call on list`() {
+    fun `reports on vars with unknown delegates`() {
         val code = """
         val shouldNotError = "hi"
         var shouldError = "hi"

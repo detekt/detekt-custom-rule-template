@@ -12,6 +12,8 @@ class HbmartinRuleSetProvider : RuleSetProvider {
             ruleSetId,
             listOf(
                 AvoidFirstOnList(config),
+                AvoidVarsExceptWithDelegate(config),
+                DontForceCast(config),
             ),
         )
     }

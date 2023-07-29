@@ -40,7 +40,7 @@ class AvoidFirstOnList(config: Config) : Rule(config) {
                     CodeSmell(
                         issue = issue,
                         entity = Entity.from(expression),
-                        message = "Prefer to use .firstOrNull() instead of .first()",
+                        message = "Use .firstOrNull() instead of .first() in `${expression.parent.parent.text}`",
                     ),
                 )
             }
