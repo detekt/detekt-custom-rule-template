@@ -4,4 +4,8 @@ HbmartinRuleSet:
   AvoidVarsExceptWithDelegate:
     active: true
     allowedDelegates:
-      - "remember\w*"
+      - 'remember\w*'
+  DontForceCast:
+    active: true
+  MutableTypeShouldBePrivate:
+    active: true

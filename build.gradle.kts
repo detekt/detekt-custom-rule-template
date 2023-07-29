@@ -16,6 +16,7 @@ dependencies {
 
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.0")
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors:1.23.0")
+    detektPlugins(rootProject)
 }
 
 kotlin {
