@@ -12,10 +12,10 @@ internal class AvoidFirstOnListRuleTest(private val env: KotlinCoreEnvironment) 
     @Test
     fun `reports first() call on list`() {
         val code = """
-        val testList = listOf("hi")
-        val shouldError = testList.first()
+        val shouldError = listOf("hi").first()
         val testTypeImplementingList = mutableListOf("hi")
         val shouldErrorAgain = testTypeImplementingList.first()
+        val shouldNotError = testTypeImplementingList.firstOrNull()
         """
         val findings = AvoidFirstOnListRule(Config.empty).compileAndLintWithContext(env, code)
         findings shouldHaveSize 2
