@@ -1,4 +1,4 @@
-package org.example.detekt
+package me.haroldmartin.detektrules
 
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.RuleSet
@@ -11,7 +11,7 @@ class HbmartinRuleSetProvider : RuleSetProvider {
         return RuleSet(
             ruleSetId,
             listOf(
-                AvoidFirstOnListRule(config),
+                AvoidFirstOnList(config),
             ),
         )
     }

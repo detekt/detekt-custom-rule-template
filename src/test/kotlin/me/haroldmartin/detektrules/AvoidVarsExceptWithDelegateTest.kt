@@ -1,4 +1,4 @@
-package org.example.detekt
+package me.haroldmartin.detektrules
 
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.rules.KotlinCoreEnvironmentTest
@@ -8,16 +8,16 @@ import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
 import org.junit.jupiter.api.Test
 
 @KotlinCoreEnvironmentTest
-internal class AvoidFirstOnListRuleTest(private val env: KotlinCoreEnvironment) {
+internal class AvoidVarsExceptWithDelegateTest(private val env: KotlinCoreEnvironment) {
     @Test
     fun `reports first() call on list`() {
         val code = """
-        val shouldError = listOf("hi").first()
-        val testTypeImplementingList = mutableListOf("hi")
-        val shouldErrorAgain = testTypeImplementingList.first()
-        val shouldNotError = testTypeImplementingList.firstOrNull()
+        val shouldNotError = "hi"
+        var shouldError = "hi"
+        var delegated by remember { mutableStateOf(default) }
+        var delegatedUnknown by notInDefaultDelegate { mutableStateOf(default) }
         """
-        val findings = AvoidFirstOnListRule(Config.empty).compileAndLintWithContext(env, code)
+        val findings = AvoidVarsExceptWithDelegate(Config.empty).compileAndLintWithContext(env, code)
         findings shouldHaveSize 2
     }
 }

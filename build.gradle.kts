@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.0"
     `maven-publish`
+    id("io.gitlab.arturbosch.detekt").version("1.23.0")
 }
 
 group = "org.example.detekt"
@@ -12,6 +13,9 @@ dependencies {
     testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.23.0")
     testImplementation("io.kotest:kotest-assertions-core:5.6.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.0")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors:1.23.0")
 }
 
 kotlin {
@@ -30,4 +34,8 @@ publishing {
             from(components["java"])
         }
     }
+}
+
+detekt {
+    allRules = true
 }

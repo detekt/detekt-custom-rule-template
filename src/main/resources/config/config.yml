@@ -1,3 +1,6 @@
-MyRuleSet:
-  MyRule:
+HbmartinRuleSet:
+  AvoidFirstOnList:
     active: true
+  AvoidVarsExceptWithDelegate:
+    active: true
+    delegates: ["remember\w*"]

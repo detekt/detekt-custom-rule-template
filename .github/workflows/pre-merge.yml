@@ -28,13 +28,13 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: publishToMavenLocal
-  compile-test-snippets:
-    name: Compile test snippets
+  run-detekt:
+    name: Run Detekt on the detekt rules
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-      - name: Compile the snippets in the tests
+      - name: Run Detekt on the detekt rules
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: test -Pcompile-test-snippets
+          arguments: detektMain
