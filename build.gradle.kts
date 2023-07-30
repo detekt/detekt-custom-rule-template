@@ -1,7 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.0"
     `maven-publish`
-    id("io.gitlab.arturbosch.detekt").version("1.23.0")
+    id("io.gitlab.arturbosch.detekt").version("1.23.1")
     jacoco
 }
 
@@ -9,15 +9,15 @@ group = "me.haroldmartin.detektrules"
 version = "1.0-SNAPSHOT"
 
 dependencies {
-    compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.23.0")
+    compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.23.1")
 
-    testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.23.0")
+    testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.23.1")
     testImplementation("io.kotest:kotest-assertions-core:5.6.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
 
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.0")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors:1.23.0")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.1")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors:1.23.1")
     detektPlugins(rootProject)
 }
 
