@@ -3,7 +3,7 @@
 [![Join the chat at #detekt on KotlinLang](https://img.shields.io/badge/%23detekt-on_slack-red.svg?logo=slack)](https://kotlinlang.slack.com/archives/C88E12QH4)
 [![PR Checks](https://github.com/hbmartin/hbmartin-detekt-rules/actions/workflows/pre-merge.yml/badge.svg)](https://github.com/hbmartin/hbmartin-detekt-rules/actions/workflows/pre-merge.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/hbmartin/hbmartin-detekt-rules/badge)](https://www.codefactor.io/repository/github/hbmartin/hbmartin-detekt-rules)
-
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=hbmartin_hbmartin-detekt-rules&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=hbmartin_intellij-build-webhook-notifier)
 [![License](https://img.shields.io/github/license/hbmartin/hbmartin-detekt-rules.svg)](LICENSE)
 [![Release](https://jitpack.io/v/hbmartin/hbmartin-detekt-rules.svg)](https://jitpack.io/#hbmartin/hbmartin-detekt-rules)
 
@@ -54,7 +54,7 @@ Finds uses of `.first()` or `.list()` on a list type. These are dangerous calls 
 
 ### AvoidMutableCollections
 
-Finds uses of mutable collections (e.g. MutableList<>). These are highly likely to lead to bugs, prefer to use functional patterns to create new lists modified as needed. [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/AvoidMutableCollectionsTest.kt) for triggering and non-triggering examples.
+Finds uses of mutable collections e.g. `MutableList<>`. These are highly likely to lead to bugs, prefer to use functional patterns to create new lists modified as needed. [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/AvoidMutableCollectionsTest.kt) for triggering and non-triggering examples.
 
 ### AvoidVarsExceptWithDelegate
 
@@ -64,12 +64,28 @@ Finds uses of mutable `var` fields. These are highly likely to lead to bugs, pre
 
 Finds uses of `as` to force cast. These are likely to lead to crashes, especially in unforeseen circumstances, prefer to safely cast with `as?` instead. [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/DontForceCastTest.kt) for triggering and non-triggering examples.
 
+### MutableTypeShouldBePrivate
+
+Finds publicly exposed mutable types e.g. `MutableStateFlow<>`. These are likely to lead to bugs, prefer to expose a non-mutable `Flow` (e.g. with `_mutableStateFlow.asStateFlow()`) or other non-mutable type. [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/MutableTypeShouldBePrivateTest.kt) for triggering and non-triggering examples.
+
+### NoNotNullOperator
+
+Finds uses of `!!` to force unwrap. These are likely to lead to crashes, prefer to safely unwrap with `?.` or `?:` instead. Otherwise the Kotlin docs will make fun of you for being an [NPE lover](https://kotlinlang.org/docs/null-safety.html#the-operator). [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/NoNotNullOperatorTest.kt) for triggering and non-triggering examples.
+
+### NoVarsInConstructor
+
+Finds uses of `var` in a constructor. These are likely to lead to bugs, always use `val` instead. [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/NoVarsInConstructorTest.kt) for triggering and non-triggering examples.
+
+### WhenBranchSingleLineOrBraces
+
+A stylistic rule that require that either a when expression be on a single line or use braces. Either case should have a single space after the arrow. [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/WhenBranchSingleLineOrBracesTest.kt) for triggering and non-triggering examples.
+
 ## Contributing
 
 * Jump in and modify this project! Start by cloning it with `git clone git@github.com:hbmartin/hbmartin-detekt-rules.git`, then open it in IntelliJ and run the tests.
 * Read the [detekt documentation](https://detekt.dev/docs/introduction/extensions/) to learn more about how to write rules.
 * [PRs](https://github.com/hbmartin/hbmartin-detekt-rules/pulls) and [bug reports / feature requests](https://github.com/hbmartin/hbmartin-detekt-rules/issues) are all welcome!
-* This project is checked with detekt, including the ruleauthors set and, of course, [running these rules on itself](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/build.gradle.kts#L20) 
+* Checked with detekt, including the ruleauthors set and, of course, [running these rules on itself](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/build.gradle.kts#L20) 😏
 * Treat other people with helpfulness, gratitude, and consideration! See the [JetBrains CoC](https://confluence.jetbrains.com/display/ALL/JetBrains+Open+Source+and+Community+Code+of+Conduct)
 
 ## Authors
