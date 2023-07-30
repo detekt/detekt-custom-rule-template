@@ -1,6 +1,8 @@
 HbmartinRuleSet:
   AvoidFirstOrLastOnList:
     active: true
+  AvoidMutableCollections:
+    active: true
   AvoidVarsExceptWithDelegate:
     active: true
     allowedDelegates:
@@ -10,11 +12,9 @@ HbmartinRuleSet:
     active: true
   MutableTypeShouldBePrivate:
     active: true
+  NoNotNullOperator:
+    active: true
   NoVarsInConstructor:
     active: true
   WhenBranchSingleLineOrBraces:
-    active: true
-  NoNotNullOperator:
-    active: true
-  AvoidMutableCollections:
     active: true

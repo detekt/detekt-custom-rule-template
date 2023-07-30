@@ -4,7 +4,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt").version("1.23.0")
 }
 
-group = "org.example.detekt"
+group = "me.haroldmartin.detektrules"
 version = "1.0-SNAPSHOT"
 
 dependencies {
