@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "1.9.0"
     `maven-publish`
     id("io.gitlab.arturbosch.detekt").version("1.23.0")
+    jacoco
 }
 
 group = "me.haroldmartin.detektrules"
@@ -28,6 +29,15 @@ tasks.withType<Test>().configureEach {
     useJUnitPlatform()
     systemProperty("junit.jupiter.testinstance.lifecycle.default", "per_class")
     systemProperty("compile-snippet-tests", project.hasProperty("compile-test-snippets"))
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(false)
+    }
 }
 
 publishing {
