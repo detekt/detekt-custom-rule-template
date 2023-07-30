@@ -12,12 +12,13 @@ class HbmartinRuleSetProvider : RuleSetProvider {
             ruleSetId,
             listOf(
                 AvoidFirstOrLastOnList(config),
+                AvoidMutableCollections(config),
                 AvoidVarsExceptWithDelegate(config),
                 DontForceCast(config),
                 MutableTypeShouldBePrivate(config),
+                NoNotNullOperator(config),
                 NoVarsInConstructor(config),
                 WhenBranchSingleLineOrBraces(config),
-                NoNotNullOperator(config),
             ),
         )
     }

@@ -12,6 +12,7 @@ import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.KtReferenceExpression
 import org.jetbrains.kotlin.types.KotlinType
+import org.jetbrains.kotlin.types.typeUtil.supertypes
 
 @RequiresTypeResolution
 class AvoidFirstOrLastOnList(config: Config) : Rule(config) {
@@ -48,4 +49,4 @@ class AvoidFirstOrLastOnList(config: Config) : Rule(config) {
 }
 
 private val KotlinType.isList: Boolean
-    get() = toString().startsWith("List<") || constructor.supertypes.any { it.isList }
+    get() = toString().startsWith("List<") || supertypes().any { it.isList }
