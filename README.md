@@ -1,11 +1,10 @@
 # Hbmartin's detekt rules
 
-[![Join the chat at #detekt on KotlinLang](https://img.shields.io/badge/%23detekt-on_slack-red.svg?logo=slack)](https://kotlinlang.slack.com/archives/C88E12QH4)
+[![Join the chat at #detekt on KotlinLang](https://img.shields.io/badge/%23detekt-slack-red.svg?logo=slack)](https://kotlinlang.slack.com/archives/C88E12QH4)
 [![PR Checks](https://github.com/hbmartin/hbmartin-detekt-rules/actions/workflows/pre-merge.yml/badge.svg)](https://github.com/hbmartin/hbmartin-detekt-rules/actions/workflows/pre-merge.yml)
 [![codecov](https://codecov.io/github/hbmartin/hbmartin-detekt-rules/branch/main/graph/badge.svg?token=5CIMCMO3K3)](https://codecov.io/github/hbmartin/hbmartin-detekt-rules)
 [![CodeFactor](https://www.codefactor.io/repository/github/hbmartin/hbmartin-detekt-rules/badge)](https://www.codefactor.io/repository/github/hbmartin/hbmartin-detekt-rules)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=hbmartin_hbmartin-detekt-rules&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=hbmartin_intellij-build-webhook-notifier)
-[![License](https://img.shields.io/github/license/hbmartin/hbmartin-detekt-rules.svg)](LICENSE)
 [![Release](https://jitpack.io/v/hbmartin/hbmartin-detekt-rules.svg)](https://jitpack.io/#hbmartin/hbmartin-detekt-rules)
 
 
@@ -15,7 +14,7 @@ These are my opinions. There are many like them but these are mine. 😄
 
 Inside of your `dependencies` block add the following: (for more details see [adding more rule sets](https://github.com/detekt/detekt#adding-more-rule-sets))
 ```kotlin 
-detektPlugins("com.github.hbmartin:hbmartin-detekt-rules:0.0.7")
+detektPlugins("com.github.hbmartin:hbmartin-detekt-rules:0.0.8")
 ```
 
 Then add to your detekt configuration as in the section below to activate rules. Note that the AvoidFirstOrLastOnList and AvoidMutableCollections rules require [type resolution](https://detekt.dev/docs/gettingstarted/type-resolution) to be active.

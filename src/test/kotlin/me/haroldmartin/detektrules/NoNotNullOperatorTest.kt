@@ -19,4 +19,14 @@ internal class NoNotNullOperatorTest(private val env: KotlinCoreEnvironment) {
         val findings = NoNotNullOperator(Config.empty).compileAndLintWithContext(env, code)
         findings shouldHaveSize 1
     }
+
+    @Test
+    fun `should not report on usage of optional unwrapping`() {
+        val code = """
+        var stuff: String? = "hi"
+        val shouldNotError = stuff ?: "default"
+        """
+        val findings = NoNotNullOperator(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 0
+    }
 }
