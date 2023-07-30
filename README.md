@@ -2,6 +2,7 @@
 
 [![Join the chat at #detekt on KotlinLang](https://img.shields.io/badge/%23detekt-on_slack-red.svg?logo=slack)](https://kotlinlang.slack.com/archives/C88E12QH4)
 [![PR Checks](https://github.com/hbmartin/hbmartin-detekt-rules/actions/workflows/pre-merge.yml/badge.svg)](https://github.com/hbmartin/hbmartin-detekt-rules/actions/workflows/pre-merge.yml)
+[![codecov](https://codecov.io/github/hbmartin/hbmartin-detekt-rules/branch/main/graph/badge.svg?token=5CIMCMO3K3)](https://codecov.io/github/hbmartin/hbmartin-detekt-rules)
 [![CodeFactor](https://www.codefactor.io/repository/github/hbmartin/hbmartin-detekt-rules/badge)](https://www.codefactor.io/repository/github/hbmartin/hbmartin-detekt-rules)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=hbmartin_hbmartin-detekt-rules&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=hbmartin_intellij-build-webhook-notifier)
 [![License](https://img.shields.io/github/license/hbmartin/hbmartin-detekt-rules.svg)](LICENSE)

@@ -97,4 +97,18 @@ internal class AvoidFirstOrLastOnListTest(private val env: KotlinCoreEnvironment
         val findings = AvoidFirstOrLastOnList(Config.empty).compileAndLintWithContext(env, code)
         findings shouldHaveSize 1
     }
+
+    @Test
+    fun `should not report first() call on non-list method`() {
+        val code = """
+        class HasFirstButNotList {
+            fun first(): String {
+                return "hi"
+            }
+        }
+        val a = HasFirstButNotList().first()
+        """
+        val findings = AvoidFirstOrLastOnList(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 0
+    }
 }
