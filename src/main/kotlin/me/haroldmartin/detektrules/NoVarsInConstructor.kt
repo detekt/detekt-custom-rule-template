@@ -28,7 +28,8 @@ class NoVarsInConstructor(config: Config) : Rule(config) {
                         CodeSmell(
                             issue = issue,
                             entity = Entity.from(constructor),
-                            message = "Disallowed `var` parameter ${parameter.text} in constructor for ${klass.identifierName()}, please make it a val.",
+                            message = "Disallowed `var` parameter ${parameter.text} in constructor for " +
+                                "${klass.identifierName()}, please make it a val.",
                         ),
                     )
                 }

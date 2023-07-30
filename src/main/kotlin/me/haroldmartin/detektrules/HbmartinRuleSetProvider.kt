@@ -16,6 +16,8 @@ class HbmartinRuleSetProvider : RuleSetProvider {
                 DontForceCast(config),
                 MutableTypeShouldBePrivate(config),
                 NoVarsInConstructor(config),
+                WhenBranchSingleLineOrBraces(config),
+                NoNotNullOperator(config),
             ),
         )
     }

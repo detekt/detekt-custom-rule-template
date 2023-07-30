@@ -12,3 +12,7 @@ HbmartinRuleSet:
     active: true
   NoVarsInConstructor:
     active: true
+  WhenBranchSingleLineOrBraces:
+    active: true
+  NoNotNullOperator:
+    active: true

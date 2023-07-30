@@ -19,4 +19,26 @@ internal class DontForceCastTest(private val env: KotlinCoreEnvironment) {
         val findings = DontForceCast(Config.empty).compileAndLintWithContext(env, code)
         findings shouldHaveSize 1
     }
+
+    @Test
+    fun `reports unsafe casting for sealed classes`() {
+        val code = """
+        sealed class LoadingState<T : Any> {
+            class Loading<T : Any> : LoadingState<T>()
+            data class Success<T : Any>(val payload: T) : LoadingState<T>()
+            data class ErrorOnLoad<T : Any>(val error: TextResource) : LoadingState<T>()
+        }
+        
+        fun shouldError(state: LoadingState<Int>): Unit {
+            val isLoading = state is LoadingState.Loading
+            val payload = if (!isLoading) {
+                (state as LoadingState.Success).payload
+            } else {
+                null
+            }
+        }
+        """
+        val findings = DontForceCast(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 1
+    }
 }

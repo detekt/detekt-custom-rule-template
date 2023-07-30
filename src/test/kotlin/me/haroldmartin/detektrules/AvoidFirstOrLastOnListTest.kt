@@ -24,9 +24,11 @@ internal class AvoidFirstOrLastOnListTest(private val env: KotlinCoreEnvironment
     @Test
     fun `reports first() call on nullable list`() {
         val code = """
-        var shouldError: List<String?>? = null
-        shouldError = listOf("hi")
-        val emitHere = shouldError.first()
+        fun hello(): Unit {
+            var shouldError: List<String?>? = null
+            shouldError = listOf("hi")
+            val emitHere = shouldError.first()
+        }
         """
         val findings = AvoidFirstOrLastOnList(Config.empty).compileAndLintWithContext(env, code)
         findings shouldHaveSize 1
@@ -53,6 +55,43 @@ internal class AvoidFirstOrLastOnListTest(private val env: KotlinCoreEnvironment
                 val shouldError = things.first()
                 val shouldNotError = things.firstOrNull()
             }
+        }
+        """
+        val findings = AvoidFirstOrLastOnList(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 1
+    }
+
+    @Test
+    fun `reports first() call on inner list`() {
+        val code = """
+        data class ContainsList(
+            val myRange: List<Int>,
+        )
+        fun callee(s: String) {
+            println(s)
+        }
+        fun doStuff() {
+            val myList = ContainsList(listOf(1, 2, 3))
+            callee(
+                s = if (myList.myRange.first() < 1 || myList.myRange.last() > 10) {
+                    "hi"
+                } else {
+                    "bye"
+                }
+            )
+        }
+        """
+        val findings = AvoidFirstOrLastOnList(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 2
+    }
+
+    @Test
+    fun `reports first() call on delegate arg`() {
+        val code = """
+        val lazyValue: String by lazy {
+            var shouldError: List<String?>? = null
+            shouldError = listOf("hi")
+            shouldError.first()
         }
         """
         val findings = AvoidFirstOrLastOnList(Config.empty).compileAndLintWithContext(env, code)
