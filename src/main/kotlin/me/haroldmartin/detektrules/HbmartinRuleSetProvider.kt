@@ -11,10 +11,11 @@ class HbmartinRuleSetProvider : RuleSetProvider {
         return RuleSet(
             ruleSetId,
             listOf(
-                AvoidFirstOnList(config),
+                AvoidFirstOrLastOnList(config),
                 AvoidVarsExceptWithDelegate(config),
                 DontForceCast(config),
                 MutableTypeShouldBePrivate(config),
+                NoVarsInConstructor(config),
             ),
         )
     }

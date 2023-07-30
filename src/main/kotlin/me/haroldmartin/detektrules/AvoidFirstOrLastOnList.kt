@@ -14,19 +14,19 @@ import org.jetbrains.kotlin.psi.KtReferenceExpression
 import org.jetbrains.kotlin.types.KotlinType
 
 @RequiresTypeResolution
-class AvoidFirstOnList(config: Config) : Rule(config) {
+class AvoidFirstOrLastOnList(config: Config) : Rule(config) {
     override val issue = Issue(
         id = javaClass.simpleName,
         severity = Severity.Defect,
-        description = "It is dangerous to call .first() on a list since it will throw an exception" +
-            "if the list is empty. Prefer to use .firstOrNull() instead.",
+        description = "It is dangerous to call .first() or .last() on a list since it will throw an exception" +
+            "if the list is empty. Prefer to use .firstOrNull() or .lastOrNull() instead.",
         debt = Debt.FIVE_MINS,
     )
 
     override fun visitReferenceExpression(expression: KtReferenceExpression) {
         super.visitReferenceExpression(expression)
-        val name = (expression as? KtNameReferenceExpression)?.getReferencedName()
-        if (name != "first") return
+        val name = expression.text ?: (expression as? KtNameReferenceExpression)?.getReferencedName()
+        if (name != "first" && name != "last") return
 
         val index = expression.parent.parent.children.indexOf(expression.parent)
         if (index == 0) return
@@ -40,7 +40,7 @@ class AvoidFirstOnList(config: Config) : Rule(config) {
                     CodeSmell(
                         issue = issue,
                         entity = Entity.from(expression),
-                        message = "Use .firstOrNull() instead of .first() in `${expression.parent.parent.text}`",
+                        message = "Use .${name}OrNull() instead of .$name() in `${expression.parent.parent.text}`",
                     ),
                 )
             }

@@ -20,7 +20,9 @@ class AvoidVarsExceptWithDelegate(config: Config) : Rule(config) {
         debt = Debt.TWENTY_MINS,
     )
 
-    private val allowedDelegates: List<Regex> by config(listOf("remember\\w*")) { it.map(String::toRegex) }
+    private val allowedDelegates: List<Regex> by config(listOf("remember\\w*", "mutableState\\w*")) {
+        it.map(String::toRegex)
+    }
 
     override fun visitProperty(property: KtProperty) {
         super.visitProperty(property)

@@ -1,11 +1,14 @@
 HbmartinRuleSet:
-  AvoidFirstOnList:
+  AvoidFirstOrLastOnList:
     active: true
   AvoidVarsExceptWithDelegate:
     active: true
     allowedDelegates:
       - 'remember\w*'
+      - 'mutableState\w*'
   DontForceCast:
     active: true
   MutableTypeShouldBePrivate:
+    active: true
+  NoVarsInConstructor:
     active: true

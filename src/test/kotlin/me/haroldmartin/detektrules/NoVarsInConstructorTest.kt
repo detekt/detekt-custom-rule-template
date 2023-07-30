@@ -8,16 +8,15 @@ import org.jetbrains.kotlin.cli.jvm.compiler.KotlinCoreEnvironment
 import org.junit.jupiter.api.Test
 
 @KotlinCoreEnvironmentTest
-internal class AvoidFirstOnListTest(private val env: KotlinCoreEnvironment) {
+internal class NoVarsInConstructorTest(private val env: KotlinCoreEnvironment) {
     @Test
-    fun `reports first() call on list`() {
+    fun `reports on vars in a class constructor`() {
         val code = """
-        val shouldError = listOf("hi").first()
-        val testTypeImplementingList = mutableListOf("hi")
-        val shouldErrorAgain = testTypeImplementingList.first()
-        val shouldNotError = testTypeImplementingList.firstOrNull()
+        class BadBadNotGood(val x: String, var y: Int, var z: Int)
         """
-        val findings = AvoidFirstOnList(Config.empty).compileAndLintWithContext(env, code)
+        val findings = NoVarsInConstructor(Config.empty).compileAndLintWithContext(env, code)
         findings shouldHaveSize 2
     }
 }
+
+class BadBadNotGood(val x: String, var y: Int, var z: Int)
