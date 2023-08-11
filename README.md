@@ -14,7 +14,7 @@ These are my opinions. There are many like them but these are mine. 😄
 
 Inside of your `dependencies` block add the following: (for more details see [adding more rule sets](https://github.com/detekt/detekt#adding-more-rule-sets))
 ```kotlin 
-detektPlugins("com.github.hbmartin:hbmartin-detekt-rules:0.0.9")
+detektPlugins("com.github.hbmartin:hbmartin-detekt-rules:0.1.0")
 ```
 
 Then add to your detekt configuration as in the section below to activate rules. Note that the AvoidFirstOrLastOnList and AvoidMutableCollections rules require [type resolution](https://detekt.dev/docs/gettingstarted/type-resolution) to be active.
@@ -72,7 +72,7 @@ Finds uses of `as` to force cast. These are likely to lead to crashes, especiall
 Finds publicly exposed mutable types e.g. `MutableStateFlow<>`. These are likely to lead to bugs, prefer to expose a non-mutable `Flow` (e.g. with `_mutableStateFlow.asStateFlow()`) or other non-mutable type. [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/MutableTypeShouldBePrivateTest.kt) for triggering and non-triggering examples.
 
 ### NoCallbacksInFunctions
-Finds uses of callbacks in functions. This can lead to a mixed concurrency paradigm and are likely to lead to bugs or stalled threads, prefer to use a suspend function instead. Use the `ignoreAnnotated` configuration to allow callbacks in `@Composable` functions.
+Finds uses of callbacks in functions. This can lead to a mixed concurrency paradigm and are likely to lead to bugs or stalled threads, prefer to use a suspend function instead. Use the `ignoreAnnotated` configuration to allow callbacks in `@Composable` functions. [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/NoCallbacksInFunctionsTest.kt) for triggering and non-triggering examples.
 
 ### NoNotNullOperator
 
