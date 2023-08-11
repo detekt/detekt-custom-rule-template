@@ -12,6 +12,6 @@ internal class HbmartinRuleSetProviderTest(private val env: KotlinCoreEnvironmen
     fun `verify ruleset name and rule count`() {
         val ruleSet = HbmartinRuleSetProvider()
         ruleSet.ruleSetId shouldBe "HbmartinRuleSet"
-        ruleSet.instance(Config.empty).rules.size shouldBe 8
+        ruleSet.instance(Config.empty).rules.size shouldBe 9
     }
 }
