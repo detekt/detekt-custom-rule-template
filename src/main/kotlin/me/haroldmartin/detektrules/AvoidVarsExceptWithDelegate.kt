@@ -31,9 +31,8 @@ class AvoidVarsExceptWithDelegate(config: Config) : Rule(config) {
             val delegateName = delegate
                 .findDescendantOfType<KtNameReferenceExpression>()
                 ?.getReferencedName()
-                ?: "could not determine delegate"
 
-            if (!allowedDelegates.any { it.matches(delegateName) }) {
+            if (delegateName == null || !allowedDelegates.any { it.matches(delegateName) }) {
                 report(
                     CodeSmell(
                         issue = issue,

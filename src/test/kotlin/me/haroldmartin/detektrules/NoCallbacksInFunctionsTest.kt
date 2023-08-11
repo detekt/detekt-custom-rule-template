@@ -11,14 +11,33 @@ import org.junit.jupiter.api.Test
 @KotlinCoreEnvironmentTest
 internal class NoCallbacksInFunctionsTest(private val env: KotlinCoreEnvironment) {
     @Test
-    fun `reports callbacks`() {
+    fun `does not report functions with no callbacks`() {
         val code = """
-        fun doNothing(s: String) {
+        fun thisIsFine(s: String) {
             println(s)
         }
+        fun thisIsAlsoFine() {
+            println("o hai")
+        }
+        """
+        val findings = NoCallbacksInFunctions(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 0
+    }
+
+    @Test
+    fun `reports function with single callback`() {
+        val code = """
         fun doSomething(callback1: (Float) -> Unit) {
             callback1(1f)
         }
+        """
+        val findings = NoCallbacksInFunctions(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 1
+    }
+
+    @Test
+    fun `reports function with multiple callbacks`() {
+        val code = """
         private fun doSomethingElse(
             parameter: List<Int>,
             callback4: (Boolean) -> Unit,
@@ -29,6 +48,6 @@ internal class NoCallbacksInFunctionsTest(private val env: KotlinCoreEnvironment
         }
         """
         val findings = NoCallbacksInFunctions(Config.empty).compileAndLintWithContext(env, code)
-        findings shouldHaveSize 2
+        findings shouldHaveSize 1
     }
 }
