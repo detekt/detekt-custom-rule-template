@@ -38,6 +38,9 @@ HbmartinRuleSet:
     active: true
   MutableTypeShouldBePrivate:
     active: true
+  NoCallbacksInFunctions:
+    active: true
+    ignoreAnnotated: ['Composable']
   NoNotNullOperator:
     active: true
   NoVarsInConstructor:
@@ -67,6 +70,9 @@ Finds uses of `as` to force cast. These are likely to lead to crashes, especiall
 ### MutableTypeShouldBePrivate
 
 Finds publicly exposed mutable types e.g. `MutableStateFlow<>`. These are likely to lead to bugs, prefer to expose a non-mutable `Flow` (e.g. with `_mutableStateFlow.asStateFlow()`) or other non-mutable type. [See here](https://github.com/hbmartin/hbmartin-detekt-rules/blob/main/src/test/kotlin/me/haroldmartin/detektrules/MutableTypeShouldBePrivateTest.kt) for triggering and non-triggering examples.
+
+### NoCallbacksInFunctions
+Finds uses of callbacks in functions. This can lead to a mixed concurrency paradigm and are likely to lead to bugs or stalled threads, prefer to use a suspend function instead. Use the `ignoreAnnotated` configuration to allow callbacks in `@Composable` functions.
 
 ### NoNotNullOperator
 

@@ -16,5 +16,8 @@ HbmartinRuleSet:
     active: true
   NoVarsInConstructor:
     active: true
+  NoCallbacksInFunctions:
+    active: true
+    ignoreAnnotated: ['Composable']
   WhenBranchSingleLineOrBraces:
     active: true

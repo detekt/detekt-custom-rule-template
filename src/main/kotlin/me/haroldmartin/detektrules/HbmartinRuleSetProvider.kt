@@ -16,6 +16,7 @@ class HbmartinRuleSetProvider : RuleSetProvider {
                 AvoidVarsExceptWithDelegate(config),
                 DontForceCast(config),
                 MutableTypeShouldBePrivate(config),
+                NoCallbacksInFunctions(config),
                 NoNotNullOperator(config),
                 NoVarsInConstructor(config),
                 WhenBranchSingleLineOrBraces(config),
