@@ -78,4 +78,35 @@ internal class AvoidMutableCollectionsTest(private val env: KotlinCoreEnvironmen
         val findings = AvoidMutableCollections(Config.empty).compileAndLintWithContext(env, code)
         findings shouldHaveSize 3
     }
+
+    @Test
+    fun `reports on mutable field with class`() {
+        val code = """
+        data class SomeStuff(val stuff: String)
+        data class BadBadNotGood(
+            val otherStuff: Int,
+            val mutableList: MutableList<SomeStuff>,
+            val otherOtherStuff: Boolean,
+        )
+        """
+        val findings = AvoidMutableCollections(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 1
+    }
+
+    @Test
+    fun `reports on mutable return from extension function`() {
+        val code = """
+        private fun <T> MutableList<T>.toggle(element: T): MutableList<T> where T : Any {
+            val index = indexOf(element)
+            if (index != -1) {
+                removeAt(index)
+            } else {
+                add(element)
+            }
+            return this
+        }
+        """
+        val findings = AvoidMutableCollections(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 3
+    }
 }
