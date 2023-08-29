@@ -50,4 +50,27 @@ internal class NoCallbacksInFunctionsTest(private val env: KotlinCoreEnvironment
         val findings = NoCallbacksInFunctions(Config.empty).compileAndLintWithContext(env, code)
         findings shouldHaveSize 1
     }
+
+    @Test
+    fun `does not report extension function`() {
+        val code = """
+private fun List<T>.forEach(function: (T) -> Unit) {
+    for (i in 0 until length) {
+        function(item(i))
+    }
+}
+        """
+        val findings = NoCallbacksInFunctions(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 0
+    }
+
+    @Test
+    fun `does not report receiver function`() {
+        val code = """
+fun mydsl(function: String.() -> Unit) {
+}
+        """
+        val findings = NoCallbacksInFunctions(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 0
+    }
 }

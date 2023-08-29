@@ -7,9 +7,11 @@ import io.gitlab.arturbosch.detekt.api.Entity
 import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.Severity
+import io.gitlab.arturbosch.detekt.api.config
 import org.jetbrains.kotlin.psi.KtFunctionType
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtParameter
+import org.jetbrains.kotlin.psi.psiUtil.isExtensionDeclaration
 
 class NoCallbacksInFunctions(config: Config) : Rule(config) {
     override val issue = Issue(
@@ -19,17 +21,34 @@ class NoCallbacksInFunctions(config: Config) : Rule(config) {
         debt = Debt.TWENTY_MINS,
     )
 
+    @Suppress("BooleanPropertyNaming")
+    private val allowReceivers: Boolean by config(true)
+
+    @Suppress("BooleanPropertyNaming")
+    private val allowExtensions: Boolean by config(true)
+
     override fun visitNamedFunction(function: KtNamedFunction) {
         super.visitNamedFunction(function)
-        function.functionTypeParameters?.takeIf { it.isNotEmpty() }?.let {
-            report(
-                CodeSmell(
-                    issue = issue,
-                    entity = Entity.from(function),
-                    message = "${function.name} should not have callbacks: ${it.joinToString()}",
-                ),
-            )
-        }
+        if (allowExtensions && function.isExtensionDeclaration()) return
+        function
+            .functionTypeParameters
+            ?.mapNotNull { paramText ->
+                if (paramText.contains(".(") && allowReceivers) {
+                    null
+                } else {
+                    paramText
+                }
+            }
+            ?.takeIf { it.isNotEmpty() }
+            ?.let {
+                report(
+                    CodeSmell(
+                        issue = issue,
+                        entity = Entity.from(function),
+                        message = "${function.name} should not have callbacks: ${it.joinToString()}",
+                    ),
+                )
+            }
     }
 }
 

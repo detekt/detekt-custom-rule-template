@@ -19,5 +19,8 @@ HbmartinRuleSet:
   NoCallbacksInFunctions:
     active: true
     ignoreAnnotated: ['Composable']
+    allowExtensions: true
+    allowReceivers: true
+
   WhenBranchSingleLineOrBraces:
     active: true
