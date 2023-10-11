@@ -30,7 +30,7 @@ jobs:
           ./change_package_name.sh com.github.${owner,,}.${name,,} "$(echo $GITHUB_REPOSITORY | cut -d/ -f2)"
       # Push changes
       - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
+        uses: ad-m/github-push-action@v0.8.0
         with:
           branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
