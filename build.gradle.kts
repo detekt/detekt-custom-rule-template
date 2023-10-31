@@ -9,7 +9,7 @@ version = "1.0-SNAPSHOT"
 dependencies {
     compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.23.1")
 
-    testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.23.1")
+    testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.23.2")
     testImplementation("io.kotest:kotest-assertions-core:5.7.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
 }
