@@ -1,7 +1,9 @@
-rootProject.name = "detekt-custom-rule"
+rootProject.name = "hbmartin-detekt-rules"
 
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
     }
 }
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

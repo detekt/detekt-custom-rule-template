@@ -37,8 +37,8 @@ class AvoidVarsExceptWithDelegate(config: Config) : Rule(config) {
                     CodeSmell(
                         issue = issue,
                         entity = Entity.from(property),
-                        message = "Property ${property.name} is a delegated `var`iable but the delegate is not " +
-                            "allowed. Change to val or configure allowed delegates regex list",
+                        message = "Property ${property.name.orEmpty()} is a delegated `var`iable but the delegate is " +
+                            "not allowed. Change to val or configure allowed delegates regex list",
                     ),
                 )
             }

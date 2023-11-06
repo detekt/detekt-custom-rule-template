@@ -27,7 +27,7 @@ class MutableTypeShouldBePrivate(config: Config) : Rule(config) {
                     CodeSmell(
                         issue = issue,
                         entity = Entity.from(property),
-                        message = "${property.name} should be private since it is a mutable type.",
+                        message = "${property.name ?: "Property"} should be private since it is a mutable type.",
                     ),
                 )
             }

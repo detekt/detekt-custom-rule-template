@@ -45,7 +45,7 @@ class NoCallbacksInFunctions(config: Config) : Rule(config) {
                     CodeSmell(
                         issue = issue,
                         entity = Entity.from(function),
-                        message = "${function.name} should not have callbacks: ${it.joinToString()}",
+                        message = "${function.name ?: "Function"} should not have callbacks: ${it.joinToString()}",
                     ),
                 )
             }

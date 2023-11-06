@@ -1,29 +1,29 @@
 plugins {
-    kotlin("jvm") version "1.9.10"
+    kotlin("jvm") version "1.9.20"
     `maven-publish`
-    id("io.gitlab.arturbosch.detekt") version "1.23.1"
+    alias(libs.plugins.detekt)
     jacoco
-    id("com.github.ben-manes.versions") version "0.47.0"
+    id("com.github.ben-manes.versions") version "0.49.0"
 }
 
 group = "me.haroldmartin.detektrules"
-version = "1.0-SNAPSHOT"
+version = "0.1.2"
 
 dependencies {
-    compileOnly("io.gitlab.arturbosch.detekt:detekt-api:1.23.1")
+    compileOnly(libs.detekt.api)
 
-    testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.23.1")
-    testImplementation("io.kotest:kotest-assertions-core:5.6.2")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
+    testImplementation(libs.detekt.test)
+    testImplementation("io.kotest:kotest-assertions-core:5.8.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
 
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.1")
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-rules-ruleauthors:1.23.1")
+    detektPlugins(libs.detekt.formatting)
+    detektPlugins(libs.detekt.ruleauthors)
     detektPlugins(rootProject)
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(17)
 }
 
 tasks.withType<Test>().configureEach {
