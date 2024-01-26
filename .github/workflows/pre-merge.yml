@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Run tests
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v3
         with:
           arguments: test
   publish:
@@ -25,7 +25,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Check that the publish plugin works
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v3
         with:
           arguments: publishToMavenLocal
   compile-test-snippets:
@@ -35,6 +35,6 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Compile the snippets in the tests
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v3
         with:
           arguments: test -Pcompile-test-snippets
