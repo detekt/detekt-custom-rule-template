@@ -16,8 +16,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Run tests
         uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: test
+      - name: Build
+        run: ./gradlew build
   publish:
     name: Check that the publish plugin works
     runs-on: ubuntu-latest
@@ -26,8 +26,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Check that the publish plugin works
         uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: publishToMavenLocal
+      - name: Build
+        run: ./gradlew publishToMavenLocal
   compile-test-snippets:
     name: Compile test snippets
     runs-on: ubuntu-latest
@@ -36,5 +36,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Compile the snippets in the tests
         uses: gradle/actions/setup-gradle@v3
-        with:
-          arguments: test -Pcompile-test-snippets
+      - name: Build
+        run: ./gradlew test -Pcompile-test-snippets
