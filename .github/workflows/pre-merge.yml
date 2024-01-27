@@ -14,9 +14,9 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-      - name: Run tests
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-      - name: Build
+      - name: Run tests
         run: ./gradlew build
   publish:
     name: Check that the publish plugin works
