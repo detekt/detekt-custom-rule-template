@@ -13,7 +13,7 @@ dependencies {
     compileOnly(libs.detekt.api)
 
     testImplementation(libs.detekt.test)
-    testImplementation("io.kotest:kotest-assertions-core:5.8.0")
+    testImplementation("io.kotest:kotest-assertions-core:5.9.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
     testImplementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
 
