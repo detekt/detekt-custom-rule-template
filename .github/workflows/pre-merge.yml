@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
       - name: Check that the publish plugin works
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: publishToMavenLocal
   run-detekt:
@@ -29,6 +29,6 @@ jobs:
           distribution: temurin
           java-version: 17
       - name: Run Detekt on the detekt rules
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: detektMain
