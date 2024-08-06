@@ -1,13 +1,16 @@
+import java.net.URI
+
 plugins {
-    kotlin("jvm") version "1.9.21"
+    kotlin("jvm") version "2.0.0"
     `maven-publish`
     alias(libs.plugins.detekt)
     jacoco
     id("com.github.ben-manes.versions") version "0.51.0"
+    id("com.vanniktech.maven.publish") version "0.29.0"
 }
 
 group = "me.haroldmartin.detektrules"
-version = "0.1.4"
+version = "0.1.5"
 
 dependencies {
     compileOnly(libs.detekt.api)
@@ -47,8 +50,27 @@ publishing {
             from(components["java"])
         }
     }
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = URI("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
+    }
 }
 
 detekt {
     allRules = true
+}
+
+tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+    checkForGradleUpdate = true
+    rejectVersionIf {
+        listOf("-RC", "-Beta", "-M1", "-M2").any { word ->
+            candidate.version.contains(word)
+        }
+    }
 }
