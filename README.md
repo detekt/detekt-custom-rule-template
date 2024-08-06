@@ -43,6 +43,7 @@ HbmartinRuleSet:
     ignoreAnnotated: ['Composable']
     allowExtensions: true
     allowReceivers: true
+    allowInline: false
   NoNotNullOperator:
     active: true
   NoVarsInConstructor:

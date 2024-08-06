@@ -21,6 +21,7 @@ HbmartinRuleSet:
     ignoreAnnotated: ['Composable']
     allowExtensions: true
     allowReceivers: true
+    allowInline: false
 
   WhenBranchSingleLineOrBraces:
     active: true

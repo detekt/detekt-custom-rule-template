@@ -8,6 +8,7 @@ import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.Severity
 import io.gitlab.arturbosch.detekt.api.config
+import io.gitlab.arturbosch.detekt.rules.isInline
 import org.jetbrains.kotlin.psi.KtFunctionType
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtParameter
@@ -27,9 +28,13 @@ class NoCallbacksInFunctions(config: Config) : Rule(config) {
     @Suppress("BooleanPropertyNaming")
     private val allowExtensions: Boolean by config(true)
 
+    @Suppress("BooleanPropertyNaming")
+    private val allowInline: Boolean by config(false)
+
     override fun visitNamedFunction(function: KtNamedFunction) {
         super.visitNamedFunction(function)
         if (allowExtensions && function.isExtensionDeclaration()) return
+        if (allowInline && function.isInline()) return
         function
             .functionTypeParameters
             ?.mapNotNull { paramText ->

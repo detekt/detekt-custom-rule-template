@@ -95,6 +95,26 @@ fun mydsl(function: String.() -> Unit) {
         val findings = NoCallbacksInFunctions(KeyedConfig("allowReceivers", false)).compileAndLintWithContext(env, code)
         findings shouldHaveSize 1
     }
+
+    @Test
+    fun `does report inline function if not allowed`() {
+        val code = """
+inline fun myinline(function: () -> Unit) {
+}
+        """
+        val findings = NoCallbacksInFunctions(Config.empty).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 1
+    }
+
+    @Test
+    fun `does not report inline function if allowed`() {
+        val code = """
+inline fun myinline(function: () -> Unit) {
+}
+        """
+        val findings = NoCallbacksInFunctions(KeyedConfig("allowInline", true)).compileAndLintWithContext(env, code)
+        findings shouldHaveSize 0
+    }
 }
 
 internal class KeyedConfig(private val key: String, private val value: Boolean) : Config {
