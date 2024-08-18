@@ -15,9 +15,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          validate-wrappers: true
+        uses: gradle/actions/setup-gradle@v4
       - name: Run tests
         run: ./gradlew build
   publish:
@@ -27,9 +25,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          validate-wrappers: true
+        uses: gradle/actions/setup-gradle@v4
       - name: Check that the publish plugin works
         run: ./gradlew publishToMavenLocal
   compile-test-snippets:
@@ -39,8 +35,6 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          validate-wrappers: true
+        uses: gradle/actions/setup-gradle@v4
       - name: Compile the snippets in the tests
         run: ./gradlew test -Pcompile-test-snippets
