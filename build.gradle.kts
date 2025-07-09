@@ -11,7 +11,8 @@ dependencies {
 
     testImplementation("io.gitlab.arturbosch.detekt:detekt-test:1.23.8")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.13.3")
+    testImplementation(platform("org.junit:junit-bom:5.13.3"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
